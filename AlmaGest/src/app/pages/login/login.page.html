@@ -1,9 +1,47 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
 
+  <ion-grid class="grid1">
+    <img src="assets/img/warehouse.jpg">
+  </ion-grid>
+  
+  <ion-slide>
+      <div class="contaier-login">
+          <ion-grid>
+              <ion-row>
+                  <ion-col>
+                      <h1>Iniciar Sesión</h1>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-list>
+  
+                          <ion-item>
+                              <ion-icon name="person" class="icon-login"></ion-icon>
+                              <ion-input name="user" type="text" required placeholder="Usuario"></ion-input>
+                          </ion-item>
+                          <br />
+                          <ion-item>
+                              <ion-icon name="lock-closed" class="icon-login"></ion-icon>
+                              <ion-input name="password" type="password" required placeholder="Contraseña"></ion-input>
+                          </ion-item>
+  
+                      </ion-list>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-button type="submit" fill="solid" expand="full"> Entrar </ion-button>
+                      <ion-button type="submit" fill="solid" expand="full" color="danger"> Registrate </ion-button>
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+      </div>
+  </ion-slide>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>AlmaGest© 2021 </ion-title>
+  </ion-toolbar>
+</ion-footer>
