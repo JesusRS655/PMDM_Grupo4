@@ -1,5 +1,5 @@
-<ion-content>
-
+<ion-content scrollY="false">
+    
   <ion-grid class="grid1">
     <img src="assets/img/warehouse.jpg">
   </ion-grid>
@@ -32,7 +32,7 @@
               <ion-row>
                   <ion-col>
                       <ion-button type="submit" fill="solid" expand="full"> Entrar </ion-button>
-                      <ion-button type="submit" fill="solid" expand="full" color="danger"> Registrate </ion-button>
+                      <ion-button type="submit" fill="solid" expand="full" color="danger" [routerLink]="['/register']"> Registrate </ion-button>
                   </ion-col>
               </ion-row>
           </ion-grid>

@@ -1,9 +1,55 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="no-scroll">
+  <ion-content>
+    <form>
+      <ion-item lines="full">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" name="firstname" required></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input type="text" name="secondname" required></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" name="email" required></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" name="password" required></ion-input>
+      </ion-item>
 
+      <ion-item lines="full">
+        <ion-label position="floating">Confirma Contraseña</ion-label>
+        <ion-input type="password" name="c_password" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">ID Compañía</ion-label>
+        <ion-input type="text" name="company_id" required></ion-input>
+      </ion-item>
+  
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-content>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>AlmaGest© 2021 </ion-title>
+  </ion-toolbar>
+</ion-footer>

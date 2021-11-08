@@ -27,3 +27,7 @@ ion-slide {
 ion-footer {
     text-align: center;
 }
+
+.no-scroll .scroll-content{
+    overflow: hidden;
+}
