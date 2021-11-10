@@ -8,40 +8,40 @@
 
 <ion-content class="no-scroll">
   <ion-content>
-    <form>
+    <form #formulario="ngForm" (ngSubmit)="submit()">
       <ion-item lines="full">
         <ion-label position="floating">Nombre</ion-label>
-        <ion-input type="text" name="firstname" required></ion-input>
+        <ion-input type="text" name="firstname" [(ngModel)]="usuario.firstname" required></ion-input>
       </ion-item>
   
       <ion-item lines="full">
         <ion-label position="floating">Apellidos</ion-label>
-        <ion-input type="text" name="secondname" required></ion-input>
+        <ion-input type="text" name="secondname" [(ngModel)]="usuario.secondname" required></ion-input>
       </ion-item>
   
       <ion-item lines="full">
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="text" name="email" required></ion-input>
+        <ion-input type="text" name="email" [(ngModel)]="usuario.email" required></ion-input>
       </ion-item>
   
       <ion-item lines="full">
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" name="password" required></ion-input>
+        <ion-input type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
       </ion-item>
 
       <ion-item lines="full">
         <ion-label position="floating">Confirma Contraseña</ion-label>
-        <ion-input type="password" name="c_password" required></ion-input>
+        <ion-input type="password" name="c_password" [(ngModel)]="usuario.c_password" required></ion-input>
       </ion-item>
 
       <ion-item lines="full">
         <ion-label position="floating">ID Compañía</ion-label>
-        <ion-input type="text" name="company_id" required></ion-input>
+        <ion-input type="text" name="company_id" [(ngModel)]="usuario.company_id" required></ion-input>
       </ion-item>
   
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+          <ion-button type="submit" color="danger" [routerLink]="['/']" routerLinkActive="router-link-active"  expand="block">Sign Up</ion-button>
         </ion-col>
       </ion-row>
     </form>
