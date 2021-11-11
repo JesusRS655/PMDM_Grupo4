@@ -30,11 +30,14 @@ export class AdminPage implements OnInit {
   activar(usuario) {
     this.dataService.activar(usuario);
     console.log("activar", usuario);
+    this.recargar();
     this.lista.closeSlidingItems();
   }
 
   desactivar(usuario) {
+    this.dataService.desactivar(usuario);
     console.log("desactivar", usuario);
+    this.recargar();
     this.lista.closeSlidingItems();
   }
 
@@ -44,6 +47,12 @@ export class AdminPage implements OnInit {
   }
 
   eliminar(usuario) {
+    this.dataService.eliminar(usuario);
+    this.recargar();
     console.log("eliminar", usuario);
+  }
+
+  recargar(){
+    
   }
 }

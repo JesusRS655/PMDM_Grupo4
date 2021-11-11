@@ -67,14 +67,49 @@ export class DataService {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + this.token,
         "Content-Type": "application/json",
-        // 'withCredentials': 'true'
       }),
     };
     return new Promise((resolve) => {
       this.http.post(this.apiUrl + "/activate", {
-        id: usuario.id
+        user_id: usuario.id
       }, httpOptions).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
+        resolve(data);
+      })
+    })
+  }
+
+  desactivar(usuario){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise((resolve) => {
+      this.http.post(this.apiUrl + "/deactivate", {
+        user_id: usuario.id
+      }, httpOptions).subscribe((data) => {
+        // console.log(data);
+        resolve(data);
+      })
+    })
+  }
+
+  eliminar(usuario){
+    let user_id = usuario.id
+    console.log(user_id);    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise((resolve) => {
+      this.http.post(this.apiUrl + "/user/deleted/" + user_id, {
+        user_id: usuario.id
+      }, httpOptions).subscribe((data) => {
+        // console.log(data);
         resolve(data);
       })
     })
