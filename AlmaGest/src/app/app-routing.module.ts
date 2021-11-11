@@ -7,13 +7,17 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'tabs',
-    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  },
-  {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
-  }
+  },
+  // {
+  //   path: 'admin',
+  //   loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminPageModule)
+  // },
+  {
+    path: 'user-list',
+    loadChildren: () => import('./pages/user-list/user-list.module').then( m => m.UserListPageModule)
+  },
 ];
 @NgModule({
   imports: [
