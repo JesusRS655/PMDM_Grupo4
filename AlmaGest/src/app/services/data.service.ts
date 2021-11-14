@@ -33,11 +33,17 @@ export class DataService {
     });
   }
 
+  register(usuario) {
+    return this.http.post(this.apiUrl+'/register', usuario).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
   redirect(tipo: String) {
     if (tipo === "a") {
-      this.router.navigateByUrl('/user-list')
+      this.router.navigateByUrl('/tabs')
     } else {
-      this.router.navigateByUrl('/user')
+      this.router.navigateByUrl('/usuario')
     }
   }
 
@@ -65,12 +71,67 @@ export class DataService {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + this.token,
         "Content-Type": "application/json",
-        // 'withCredentials': 'true'
       }),
     };
     return new Promise((resolve) => {
       this.http.post(this.apiUrl + "/activate", {
-        id: usuario.id
+        user_id: usuario.id
+      }, httpOptions).subscribe((data) => {
+        // console.log(data);
+        resolve(data);
+      })
+    })
+  }
+
+  desactivar(usuario){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise((resolve) => {
+      this.http.post(this.apiUrl + "/deactivate", {
+        user_id: usuario.id
+      }, httpOptions).subscribe((data) => {
+        // console.log(data);
+        resolve(data);
+      })
+    })
+  }
+
+  eliminar(usuario) {
+    let user_id = usuario.id
+    console.log(user_id);    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise((resolve) => {
+      this.http.post(this.apiUrl + '/user/deleted/' + user_id, { user_id: usuario.id
+      }, httpOptions).subscribe((data) => { resolve(data); })
+    })
+  }
+
+  editar(usuario){
+    let user_id = usuario.id
+    console.log(user_id);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise((resolve) => {
+      this.http.post(this.apiUrl + "/user/updated/" + user_id, {
+        user_id: usuario.id,
+        firstname: usuario.firstname,
+        secondname: usuario.secondname,
+        email: usuario.email,
+        password: usuario.password,
+        company_id: usuario.company_id
       }, httpOptions).subscribe((data) => {
         console.log(data);
         resolve(data);

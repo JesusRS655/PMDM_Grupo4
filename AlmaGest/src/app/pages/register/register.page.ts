@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterService } from 'src/app/services/register.service';
+import { DataService } from 'src/app/services/data.service';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private register: RegisterService) { 
+  constructor(private register: DataService) { 
 
   }
 
