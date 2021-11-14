@@ -8,15 +8,21 @@ import { AdminPageRoutingModule } from './admin-routing.module';
 
 import { AdminPage } from './admin.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { EditarPage } from '../editar/editar.page';
+import { EditarPageModule } from '../editar/editar.module';
 
 @NgModule({
+  entryComponents: [
+    EditarPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     AdminPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    EditarPageModule
   ],
-  declarations: [AdminPage]
+  declarations: [AdminPage, EditarPage]
 })
 export class AdminPageModule {}

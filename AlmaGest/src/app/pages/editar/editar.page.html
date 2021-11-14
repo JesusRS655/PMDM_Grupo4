@@ -1,0 +1,46 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Editar usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- (ngSubmit)="editar()" -->
+  <form #formulario="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre:</ion-label>
+        <!-- [(ngModel)]="usuario.firstname" -->
+        <ion-input type="text" name="firstname" value="{{ usuario.firstname }}" [(ngModel)]="usuario.firstname">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido:</ion-label>
+        <!-- [(ngModel)]="usuario.secondname" -->
+        <ion-input type="text" name="secondname" value="{{ usuario.secondname }}" [(ngModel)]="usuario.secondname">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email:</ion-label>
+        <!-- [(ngModel)]="usuario.email" -->
+        <ion-input type="email" name="email" value="{{ usuario.email }}" [(ngModel)]="usuario.email"
+          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña:</ion-label>
+        <!-- [(ngModel)]="usuario.password" -->
+        <ion-input type="text" name="password" value="{{ usuario.password }}" [(ngModel)]="usuario.password">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Codigo empresa:</ion-label>
+        <!-- [(ngModel)]="usuario.company_id" -->
+        <ion-input type="text" name="company_id" value="{{ usuario.company_id }}" [(ngModel)]="usuario.company_id">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" type="submit" (click)="submitEditar(usuario)">Editar</ion-button>
+    <ion-button expand="block" color="danger" type="submit" (click)="cancelar()">Cancelar</ion-button>
+  </form>
+</ion-content>

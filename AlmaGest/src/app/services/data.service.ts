@@ -38,7 +38,7 @@ export class DataService {
       // voy por aqui
       this.router.navigateByUrl('/admin')
     } else {
-      this.router.navigateByUrl('/user')
+      this.router.navigateByUrl('/usuario')
     }
   }
 
@@ -110,6 +110,30 @@ export class DataService {
         user_id: usuario.id
       }, httpOptions).subscribe((data) => {
         // console.log(data);
+        resolve(data);
+      })
+    })
+  }
+
+  editar(usuario){
+    let user_id = usuario.id
+    console.log(user_id);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise((resolve) => {
+      this.http.post(this.apiUrl + "/user/updated/" + user_id, {
+        user_id: usuario.id,
+        firstname: usuario.firstname,
+        secondname: usuario.secondname,
+        email: usuario.email,
+        password: usuario.password,
+        company_id: usuario.company_id
+      }, httpOptions).subscribe((data) => {
+        console.log(data);
         resolve(data);
       })
     })
