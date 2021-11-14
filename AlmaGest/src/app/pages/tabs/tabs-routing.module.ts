@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: "admin",
-        loadChildren: "../admin/admin.module#AdminPageModule",
+        loadChildren: () => import('../admin/admin.module').then( m => m.AdminPageModule)
       },
     ],
   },
