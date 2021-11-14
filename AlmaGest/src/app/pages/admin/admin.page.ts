@@ -81,7 +81,7 @@ export class AdminPage implements OnInit {
 
   recargar(){
     this.ngOnInit();
-    this.router.navigateByUrl('/admin')
+    this.router.navigateByUrl('/tabs/admin')
     console.log('recarga');
   }
 }

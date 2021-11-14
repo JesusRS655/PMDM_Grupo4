@@ -1,36 +1,54 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '/home', pathMatch: 'full'
+    path: "",
+    redirectTo: "/home",
+    pathMatch: "full",
   },
   {
-    path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    path: "tabs",
+    redirectTo: "/tabs/admin",
+    pathMatch: "full",
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    path: "register",
+    loadChildren: () =>
+      import("./pages/register/register.module").then(
+        (m) => m.RegisterPageModule
+      ),
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    path: "login",
+    loadChildren: () =>
+      import("./pages/login/login.module").then((m) => m.LoginPageModule),
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule)
+    path: "home",
+    loadChildren: () =>
+      import("./pages/home/home.module").then((m) => m.HomePageModule),
   },
   {
-    path: 'usuario',
-    loadChildren: () => import('./pages/usuario/usuario.module').then( m => m.UsuarioPageModule)
+    path: "admin",
+    loadChildren: () =>
+      import("./pages/admin/admin.module").then((m) => m.AdminPageModule),
   },
-
+  {
+    path: "usuario",
+    loadChildren: () =>
+      import("./pages/usuario/usuario.module").then((m) => m.UsuarioPageModule),
+  },
+  {
+    path: "tabs",
+    loadChildren: () =>
+      import("./pages/tabs/tabs.module").then((m) => m.TabsPageModule),
+  },
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

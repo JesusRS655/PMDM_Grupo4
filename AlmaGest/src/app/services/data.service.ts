@@ -36,7 +36,7 @@ export class DataService {
   redirect(tipo: String) {
     if (tipo === "a") {
       // voy por aqui
-      this.router.navigateByUrl('/admin')
+      this.router.navigateByUrl('/tabs')
     } else {
       this.router.navigateByUrl('/usuario')
     }
