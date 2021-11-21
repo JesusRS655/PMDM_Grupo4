@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista Articulos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirAddArticulo()">
+        <ion-icon name="add" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="refrescar($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+  <ion-list #lista>
+    <div *ngFor="let articulo of articulos">
+      <div *ngIf="articulos.length > 0">
+        <ion-item>
+          <ion-label>
+            <h3 class="nombre">
+              {{ articulo.nombre }} {{ articulo.description }}
+            </h3>
+          </ion-label>
+        </ion-item>
+      </div>
+      <div *ngIf="articulos.length === 0">
+        <p>No hay ningún articulo en la lista, añádalo con el botón de la parte superior</p>
+      </div>
+    </div>
+  </ion-list>
+  
+</ion-content>

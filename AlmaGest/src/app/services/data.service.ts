@@ -62,6 +62,25 @@ export class DataService {
     });
   }
 
+  getArticulos() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Authorization": "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+  
+    return new Promise<any>((resolve) => {
+      this.http.get(this.apiUrl + "/articles", httpOptions).subscribe((data) => {
+        resolve(data);
+        console.log(data);
+        (err) => {
+          console.log(err);
+        };
+      });
+    });
+  }
+
   activar(usuario){
     const httpOptions = {
       headers: new HttpHeaders({

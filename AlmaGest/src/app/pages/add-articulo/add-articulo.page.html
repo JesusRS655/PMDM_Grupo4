@@ -1,0 +1,80 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Añadir Articulo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #formularioArticulo="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-input type="text" name="description" [(ngModel)]="articulo.description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Precio minimo </ion-label>
+        <ion-select multiple="false">
+          <ion-select-option *ngFor="let n of minimo; let i = index" value="1">{{ i + 1 }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label> Precio maximo </ion-label>
+        <ion-select multiple="false">
+          <ion-select-option *ngFor="let n of maximo; let i = index" value="1">{{ i + 2 }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label> Color </ion-label>
+        <ion-select multiple="false">
+          <ion-select-option *ngFor="let color of colores">{{ color }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label> Peso </ion-label>
+        <ion-select multiple="false">
+          <ion-select-option *ngFor="let peso of pesos">{{ peso }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tamaño del producto</ion-label>
+        <ion-list>
+          <ion-radio-group name="size" value="numero" [(ngModel)]="opt">
+            <ion-list-header>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>1 numero</ion-label>
+              <ion-radio value="numero"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Valor simple</ion-label>
+              <ion-radio value="simple"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Valor compuesto</ion-label>
+              <ion-radio value="compuesto"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </ion-item>
+      <ion-item *ngIf="opt === 1">
+        <ion-label>Valor</ion-label>
+        <ion-select multiple="false">
+          <ion-select-option *ngFor="let valor in [3].constructor; let i = index">nº {{ i + 1 }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="opt === 2">
+        <ion-label>Valor</ion-label>
+        <ion-select multiple="false">
+          <ion-select-option *ngFor="let valor in vSimple">{{ valor }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="opt === 3">
+        <ion-label>Valor</ion-label>
+        <ion-select multiple="false">
+          <ion-select-option *ngFor="let valor in compuestoAncho">{{ valor }}</ion-select-option>
+          <ion-select-option *ngFor="let valor in compuestoAlto">{{ valor }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
