@@ -1,0 +1,22 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+        <ion-title class="ion-text-center">Artículos disponibles</ion-title>
+      </ion-buttons>
+    </ion-toolbar>
+    
+    <ion-searchbar showCancelButton="focus" ></ion-searchbar>
+  </ion-header>
+
+<ion-content>
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="refrescar($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+      <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+  <ion-list #lista>
+    <ion-item *ngFor="let articulo of articulos">
+        <ion-label class="nombre">{{ articulo.description }}</ion-label>
+        <ion-checkbox name="{{ articulo.description }}" (ionChange)="checkValue($event)" mode="ios" color="tertiary" slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>

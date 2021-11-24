@@ -14,6 +14,8 @@ export class DataService {
 
   constructor(private http: HttpClient, public nav: NavController, public router: Router) { }
 
+  // Login y registro
+
   login(usuario) {
     return new Promise((resolve) => {
       this.http
@@ -43,9 +45,11 @@ export class DataService {
     if (tipo === "a") {
       this.router.navigateByUrl('/tabs')
     } else {
-      this.router.navigateByUrl('/usuario')
+      this.router.navigateByUrl('/catalogo')
     }
   }
+
+  // Usuarios y acciones
 
   getUsuarios() {
     const httpOptions = {
@@ -138,4 +142,47 @@ export class DataService {
       })
     })
   }
+
+  // Catálogo y acciones
+  
+  getArticulos() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Authorization": "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+  
+    return new Promise<any>((resolve) => {
+      this.http.get(this.apiUrl + "/articles", httpOptions).subscribe((data) => {
+        resolve(data);
+        console.log(data);
+        (err) => {
+          console.log(err);
+        };
+      });
+    });
+  }
+  
+  // getProductos(productos) {
+  //   let company_id = productos.company_id;
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       "Authorization": "Bearer " + this.token,
+  //       "Content-Type": "application/json",
+  //     }),
+  //   };
+  
+  //   return new Promise<any>((resolve) => {
+  //     this.http.post(this.apiUrl + "/products/" + company_id, {
+  //       company_id: productos.company_id,
+  //     }, httpOptions).subscribe((data) => {
+  //       resolve(data);
+  //       console.log(data);
+  //       (err) => {
+  //         console.log(err);
+  //       };
+  //     });
+  //   });
+  // }
 }
