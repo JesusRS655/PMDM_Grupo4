@@ -1,0 +1,12 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Añadir precio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-input type="number" placeholder="Introduce un precio entre {{ min_precio }} y {{ max_precio }}" (ionChange)="checkPrecio($event)" [(ngModel)]="precio"></ion-input>
+  <ion-button disabled="{{ isDisabled }}" expand="full" color="tertiary" (click)="submitPrecio(precio)">
+    Añadir precio
+  </ion-button>
+</ion-content>

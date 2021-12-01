@@ -7,12 +7,18 @@ import { Router } from "@angular/router";
   providedIn: "root",
 })
 export class DataService {
-  token: any;
-  tipo: String;
   apiUrl = "http://semillero.allsites.es/public/api";
   usuarios: [];
 
-  constructor(private http: HttpClient, public nav: NavController, public router: Router) { }
+  token: any;
+  tipo: String;
+  empresa;
+
+  constructor(
+    private http: HttpClient, 
+    public nav: NavController, 
+    public router: Router
+  ) { }
 
   login(usuario) {
     return new Promise((resolve) => {
@@ -24,6 +30,7 @@ export class DataService {
         .subscribe((data) => {
           this.token = data.data.token;
           this.tipo = data.data.type;
+          this.empresa = data.data.company_id;
           console.log(data);
           resolve(data);
           console.log(this.token);
@@ -43,7 +50,7 @@ export class DataService {
     if (tipo === "a") {
       this.router.navigateByUrl('/tabs')
     } else {
-      this.router.navigateByUrl('/usuario')
+      this.router.navigateByUrl('/catalogo')
     }
   }
 
@@ -138,4 +145,81 @@ export class DataService {
       })
     })
   }
+
+  // Articulos y productos
+
+  getArticulos() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+
+    return new Promise<any>((resolve) => {
+      this.http
+        .get(this.apiUrl + "/articles", httpOptions)
+        .subscribe((data) => {
+          resolve(data);
+          (err) => {
+            console.log(err);
+          };
+        });
+    });
+  }
+  
+  getProductosEmpresa() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise<any>((resolve) => {
+      this.http
+        .post(
+          this.apiUrl + "/products/company",
+          {
+            id: this.empresa,
+          },
+          httpOptions
+        )
+        .subscribe((data) => {
+          resolve(data);
+        });
+    });
+  }
+
+  addProducto(id, precio, family){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      })
+    };
+    return new Promise<any>(resolve => {
+      this.http.post(this.apiUrl + "/products", {
+        article_id: id,
+        company_id: this.empresa,
+        price: precio,
+        family_id: family
+      },
+      httpOptions).subscribe(data => resolve(data))
+    })
+  }
+
+  eliminarProducto(id) {
+    let product_id = id
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise((resolve) => {
+      this.http.delete(this.apiUrl + '/products/' + product_id, httpOptions).subscribe((data) => { resolve(data); });
+    });
+  }
+
+  
 }
