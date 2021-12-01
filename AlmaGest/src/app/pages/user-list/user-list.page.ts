@@ -11,7 +11,8 @@ import { EditarPage } from '../editar/editar.page';
 })
 export class UserListPage implements OnInit {
 
-  @ViewChild('lista', {static: true}) lista: IonList;
+  @ViewChild('lista', {static: true}) 
+  lista: IonList;
   usuarios: any[] = [];
 
   constructor(

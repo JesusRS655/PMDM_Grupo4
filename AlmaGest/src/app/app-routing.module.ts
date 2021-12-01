@@ -36,6 +36,18 @@ const routes: Routes = [
     path: 'editar',
     loadChildren: () => import('./pages/editar/editar.module').then( m => m.EditarPageModule)
   },
+  {
+    path: 'articulos',
+    loadChildren: () => import('./pages/articulos/articulos.module').then( m => m.ArticulosPageModule)
+  },
+  {
+    path: 'precio',
+    loadChildren: () => import('./pages/precio/precio.module').then( m => m.PrecioPageModule)
+  },
+  {
+    path: 'catalogo',
+    loadChildren: () => import('./pages/catalogo/catalogo.module').then( m => m.CatalogoPageModule)
+  },
 
 
 ];

@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-title class="ion-text-center">Artículos disponibles</ion-title>
+      </ion-buttons>
+    </ion-toolbar>    
+    <ion-searchbar showCancelButton="focus" (ionChange)="buscar($event)"></ion-searchbar>
+  </ion-header>
+<ion-content>
+  <ion-list #lista>
+    <ion-item *ngFor="let articulo of articulos | filtro: texto">
+        <ion-label class="nombre">{{ articulo.description }}</ion-label>        
+        <ion-checkbox name="{{ articulo.id + ';' + articulo.family_id + ';' + articulo.price_min + ';' + articulo.price_max }}" (ionChange)="checkValue($event)" mode="ios" color="tertiary" slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button disabled="{{ isDisabled }}" expand="full" color="tertiary" (click)="addToCatalogo()">
+      Añadir productos
+    </ion-button>
+    <ion-button expand="full" color="danger" (click)="cancelar()">
+      Cancelar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
