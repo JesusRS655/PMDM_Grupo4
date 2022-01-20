@@ -13,6 +13,11 @@ const routes: Routes = [
     pathMatch: "full",
   },
   {
+    path: 'usuario',
+    redirectTo: "/usuario/catalogo",
+    pathMatch: "full",
+  },
+  {
     path: "login",
     loadChildren: () =>
       import("./pages/login/login.module").then((m) => m.LoginPageModule),
@@ -32,7 +37,8 @@ const routes: Routes = [
   {
     path: 'usuario',
     loadChildren: () => import('./pages/usuario/usuario.module').then( m => m.UsuarioPageModule)
-  },  {
+  },
+  {
     path: 'editar',
     loadChildren: () => import('./pages/editar/editar.module').then( m => m.EditarPageModule)
   },
@@ -47,7 +53,15 @@ const routes: Routes = [
   {
     path: 'catalogo',
     loadChildren: () => import('./pages/catalogo/catalogo.module').then( m => m.CatalogoPageModule)
+  },  {
+    path: 'pedidos',
+    loadChildren: () => import('./pages/pedidos/pedidos.module').then( m => m.PedidosPageModule)
   },
+  {
+    path: 'pedir',
+    loadChildren: () => import('./pages/pedir/pedir.module').then( m => m.PedirPageModule)
+  },
+
 
 
 ];

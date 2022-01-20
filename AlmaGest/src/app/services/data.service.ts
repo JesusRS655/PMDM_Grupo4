@@ -50,7 +50,7 @@ export class DataService {
     if (tipo === "a") {
       this.router.navigateByUrl('/tabs')
     } else {
-      this.router.navigateByUrl('/catalogo')
+      this.router.navigateByUrl('/usuario')
     }
   }
 
@@ -221,5 +221,19 @@ export class DataService {
     });
   }
 
+  // Pedidos
+
+  getEmpresas() {
+    return new Promise<any>((resolve) => {
+      this.http
+        .get(this.apiUrl + "/companies")
+        .subscribe((data) => {
+          resolve(data);
+          (err) => {
+            console.log(err);
+          };
+        });
+    });
+  }
   
 }
