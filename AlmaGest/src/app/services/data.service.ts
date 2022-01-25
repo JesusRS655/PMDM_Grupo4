@@ -13,6 +13,7 @@ export class DataService {
   token: any;
   tipo: String;
   empresa;
+  empresas: any[] = [];
 
   constructor(
     private http: HttpClient, 
@@ -225,8 +226,9 @@ export class DataService {
 
   getEmpresas() {
     return new Promise<any>((resolve) => {
+      
       this.http
-        .get(this.apiUrl + "/companies")
+        .get(this.apiUrl  + "/companies")
         .subscribe((data) => {
           resolve(data);
           (err) => {

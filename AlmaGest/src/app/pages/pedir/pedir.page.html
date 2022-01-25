@@ -5,16 +5,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>Empresa</ion-label>
-    <ion-select [(ngModel)]="empresas">
-      <ion-select-option *ngFor="let empresa of empresas">{{ empresa.name }}</ion-select-option>
-    </ion-select>
-  </ion-item>
+  <ion-label>Empresa</ion-label>
+  <ion-select [(ngModel)]="empresas">
+    <ion-select-option *ngFor="let empresa of empresas">{{ empresa.name }}</ion-select-option>
+  </ion-select>
+  <ion-scroll style="height: 200px">
+    <ion-list #lista>
+      <ion-item *ngFor="let articulo of articulos">
+        <ion-label class="nombre">{{ articulo.description }}</ion-label>        
+        <ion-checkbox name="{{ articulo.id }}" mode="ios" color="tertiary" slot="end"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-scroll>
 </ion-content>
 
 <ion-footer>
 <ion-toolbar>
+  <ion-button disabled="{{ isDisabled }}" expand="full" color="tertiary">
+    Añadir productos
+  </ion-button>
   <ion-button expand="full" color="danger" (click)="cancelar()">
     Cancelar
   </ion-button>

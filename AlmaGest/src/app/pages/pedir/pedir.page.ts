@@ -14,12 +14,19 @@ export class PedirPage implements OnInit {
     private modalCtrl: ModalController,
   ) { }
 
+  articulos: any[] = [];
   empresas: any[] = [];
+
+  isDisabled = true;
+  texto = "";
 
   ngOnInit() {
     this.dataService.getEmpresas().then((data) => {
       this.empresas = data.data;
     })
+    this.dataService.getArticulos().then((data) => {
+      this.articulos = data.data;
+    });
   }
 
   cancelar() {
