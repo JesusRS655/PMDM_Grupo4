@@ -237,5 +237,25 @@ export class DataService {
         });
     });
   }
+
+  getPedidos() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+
+    return new Promise<any>((resolve) => {
+      this.http
+        .get(this.apiUrl + "/orders", httpOptions)
+        .subscribe((data) => {
+          resolve(data);
+          (err) => {
+            console.log(err);
+          };
+        });
+    });
+  }
   
 }

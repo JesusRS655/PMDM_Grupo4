@@ -16,8 +16,12 @@ export class PedidosPage implements OnInit {
   ) { }
 
   empresas: any[] = [];
+  pedidos: any[] = [];
 
   ngOnInit() {
+    this.dataService.getPedidos().then((data) => {
+      this.pedidos = data.data;
+    });
   }
 
   async pedir() {

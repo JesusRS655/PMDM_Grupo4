@@ -14,8 +14,8 @@ export class PedirPage implements OnInit {
     private modalCtrl: ModalController,
   ) { }
 
-  articulos: any[] = [];
   empresas: any[] = [];
+  productos: any[] = [];
 
   isDisabled = true;
   texto = "";
@@ -24,8 +24,8 @@ export class PedirPage implements OnInit {
     this.dataService.getEmpresas().then((data) => {
       this.empresas = data.data;
     })
-    this.dataService.getArticulos().then((data) => {
-      this.articulos = data.data;
+    this.dataService.getProductosEmpresa().then((data) => {
+      this.productos = data.data;
     });
   }
 
