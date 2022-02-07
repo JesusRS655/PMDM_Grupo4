@@ -12,6 +12,10 @@ const routes: Routes = [
       path: "user-list",
       loadChildren: () => import('../user-list/user-list.module').then( m => m.UserListPageModule)
       },
+      {
+        path: "grafica",
+        loadChildren: () => import('../grafica/grafica.module').then( m => m.GraficaPageModule)
+      },
     ],
   },
 ];

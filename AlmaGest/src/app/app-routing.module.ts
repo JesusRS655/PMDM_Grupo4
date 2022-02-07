@@ -61,6 +61,10 @@ const routes: Routes = [
     path: 'pedir',
     loadChildren: () => import('./pages/pedir/pedir.module').then( m => m.PedirPageModule)
   },
+  {
+    path: 'grafica',
+    loadChildren: () => import('./pages/grafica/grafica.module').then( m => m.GraficaPageModule)
+  },
 
 
 

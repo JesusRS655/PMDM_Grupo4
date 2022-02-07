@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>grafica</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-select [(ngModel)]="pedidos" >
+    <ion-select-option *ngFor="let pedido of pedidos">Pedido {{ pedido.id }}</ion-select-option>
+  </ion-select> 
+</ion-content>

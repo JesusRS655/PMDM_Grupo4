@@ -6,11 +6,11 @@
 
 <ion-content>
   <ion-item>
-  <ion-label>Empresa</ion-label>
-  <ion-select [(ngModel)]="empresas" >
-    <ion-select-option *ngFor="let empresa of empresas">{{ empresa.name }}</ion-select-option>
-  </ion-select>
-</ion-item>
+    <ion-label>Empresa</ion-label>
+    <ion-select [(ngModel)]="empresas" >
+      <ion-select-option *ngFor="let empresa of empresas">{{ empresa.name }}</ion-select-option>
+    </ion-select>
+  </ion-item>
   <ion-list #lista>
     <ion-item *ngFor="let producto of productos">
       <ion-label class="nombre">{{ producto.company_description }}</ion-label>        
