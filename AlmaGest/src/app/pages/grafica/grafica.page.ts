@@ -12,6 +12,8 @@ export class GraficaPage implements OnInit {
     private dataService: DataService
   ) { }
 
+  // https://valor-software.com/ng2-charts/#BarChart
+
   pedidos: any[] = [];
 
   ngOnInit() {
