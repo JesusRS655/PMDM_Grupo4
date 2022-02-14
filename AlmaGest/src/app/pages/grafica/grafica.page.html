@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>grafica</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Grafica</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,20 +9,18 @@
     <ion-select-option *ngFor="let pedido of pedidos">Pedido {{ pedido.id }}</ion-select-option>
   </ion-select> 
 
-  <!-- <div>
-    <div>
-      <div style="display: block">
-        <canvas baseChart
-          [data]="barChartData"
-          [options]="barChartOptions"
-          [plugins]="barChartPlugins"
-          [type]="barChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)">
-        </canvas>
-      </div>
-      <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+
+  <div>
+    <div style="display: block; padding-top: 10%">
+      <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="barChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+      </canvas>
     </div>
-  </div> -->
+  </div>
   
 </ion-content>
