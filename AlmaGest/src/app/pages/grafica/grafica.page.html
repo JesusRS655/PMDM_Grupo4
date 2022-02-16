@@ -5,13 +5,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-select [(ngModel)]="pedidos" >
-    <ion-select-option *ngFor="let pedido of pedidos">Pedido {{ pedido.id }}</ion-select-option>
+  <ion-select [(ngModel)]="datosPedidos" >
+    <ion-select-option *ngFor="let datosPedido of datosPedidos">Pedido {{ datosPedido.id }}</ion-select-option>
   </ion-select> 
-
-
+</ion-content>
+<ion-footer>
   <div>
-    <div style="display: block; padding-top: 10%">
+    <div style="display: block; padding-top: 40%;">
       <canvas baseChart
         [data]="barChartData"
         [options]="barChartOptions"
@@ -22,5 +22,4 @@
       </canvas>
     </div>
   </div>
-  
-</ion-content>
+</ion-footer>

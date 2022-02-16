@@ -257,5 +257,27 @@ export class DataService {
         });
     });
   }
+
+  getPedidosEmpresa() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.token,
+        "Content-Type": "application/json",
+      }),
+    };
+    return new Promise<any>((resolve) => {
+      this.http
+        .post(
+          this.apiUrl + "/orders/company",
+          {
+            id: this.empresa,
+          },
+          httpOptions
+        )
+        .subscribe((data) => {
+          resolve(data);
+        });
+    });
+  }
   
 }

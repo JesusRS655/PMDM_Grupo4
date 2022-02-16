@@ -20,26 +20,33 @@ export class GraficaPage implements OnInit {
 
   // https://valor-software.com/ng2-charts/#BarChart
 
-  pedidos: any[] = [];
+  datosPedidos: any[] = [];
   currentDate = new Date();
-  meses = [
-    (this.currentDate.getMonth())+'/'+this.currentDate.getFullYear()
+  año = this.currentDate.getFullYear();
+  mes = this.currentDate.getMonth();
+  meses: any[] = [
+    this.mes+1+'/'+this.año,
+    this.mes+2+'/'+this.año,
+    this.mes+3+'/'+this.año,
+    this.mes+4+'/'+this.año,
+    this.mes+5+'/'+this.año,
+    this.mes+6+'/'+this.año,
   ];
 
   
   ngOnInit() {
-    this.dataService.getPedidos().then((data) => {
-      this.pedidos = data.data;
+    this.dataService.getPedidosEmpresa().then((data) => {
+      this.datosPedidos = data.data;
     })
 
-    for (let i = 0; i < 6; i++) {
-      if((this.currentDate.getMonth()-i)<0){
-        this.meses[i]=(this.currentDate.getMonth()+(11-i))+'/'+(this.currentDate.getFullYear()-1);
-      }
-      else {
-        this.meses[i]=(this.currentDate.getMonth()+i)+'/'+this.currentDate.getFullYear();
-      }
-    }
+    // for (let i = 0; i < 6; i++) {
+    //   if((this.currentDate.getMonth()-i)<0){
+    //     this.meses.push((this.mes+(11-i))+'/'+(this.año-1));
+    //   }
+    //   else {
+    //     this.meses.push((this.mes+i)+'/'+this.año);
+    //   }
+    // }
   }
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -83,18 +90,17 @@ export class GraficaPage implements OnInit {
     console.log(event, active);
   }
 
-  public randomize(): void {
-    // Only Change 3 values
-    this.barChartData.datasets[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      Math.round(Math.random() * 100),
-      56,
-      Math.round(Math.random() * 100),
-      40 ];
+  // public randomize(): void {
+  //   // Only Change 3 values
+  //   this.barChartData.datasets[0].data = [
+  //     Math.round(Math.random() * 100),
+  //     59,
+  //     80,
+  //     Math.round(Math.random() * 100),
+  //     56,
+  //     Math.round(Math.random() * 100),
+  //     40 ];
 
-    this.chart?.update();
-  }
-
+  //   this.chart?.update();
+  // }
 }
