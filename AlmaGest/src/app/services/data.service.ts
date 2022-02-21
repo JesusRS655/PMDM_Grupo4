@@ -258,7 +258,7 @@ export class DataService {
     });
   }
 
-  getPedidosEmpresa() {
+  getPedidosEmpresa(id) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + this.token,

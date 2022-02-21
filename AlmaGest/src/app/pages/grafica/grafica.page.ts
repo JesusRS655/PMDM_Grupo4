@@ -16,10 +16,14 @@ export class GraficaPage implements OnInit {
 
   constructor(
     private dataService: DataService
-  ) { }
+  ) {
+    this.idEmpresa=dataService.empresa
+   }
 
   // https://valor-software.com/ng2-charts/#BarChart
 
+  idEmpresa: any;
+  productos:any = [];
   datosPedidos: any[] = [];
   currentDate = new Date();
   año = this.currentDate.getFullYear();
@@ -32,12 +36,23 @@ export class GraficaPage implements OnInit {
     this.mes+5+'/'+this.año,
     this.mes+6+'/'+this.año,
   ];
+  // prueba = this.datosPedidos[1]['order_lines'][1]['article_lines'][1]['num_articles'];
 
   
+  
   ngOnInit() {
-    this.dataService.getPedidosEmpresa().then((data) => {
-      this.datosPedidos = data.data;
+    this.dataService.getProductosEmpresa().then((data) => {
+      this.productos = data.data;
+      console.log(this.productos);
+      console.log(this.productos[1])
+    });
+    this.dataService.getPedidosEmpresa(this.idEmpresa).then((data) => {
+      this.datosPedidos = data['data'];
+      console.log(this.datosPedidos);
+      console.log(this.datosPedidos[1]['order_lines'][1]['article_lines'][1]['num_articles']);
+
     })
+    
 
     // for (let i = 0; i < 6; i++) {
     //   if((this.currentDate.getMonth()-i)<0){
@@ -56,7 +71,8 @@ export class GraficaPage implements OnInit {
     scales: {
       x: {},
       y: {
-        min: 10
+        min: 0,
+        max: 100
       }
     },
     plugins: {
@@ -75,9 +91,18 @@ export class GraficaPage implements OnInit {
   ];
 
   public barChartData: ChartData<'bar'> = {
+
+    
+
     labels: [ this.meses[0], this.meses[1], this.meses[2], this.meses[3], this.meses[4], this.meses[5]],
     datasets: [
-      { data: [ 65, 59, 80, 81, 56, 55 ], label: 'Ventas' }
+      { data: [ 
+        7, 
+        5, 
+        10, 
+        8, 
+        5, 
+        5 ], label: 'Ventas' }
     ]
   };
 
@@ -90,17 +115,17 @@ export class GraficaPage implements OnInit {
     console.log(event, active);
   }
 
-  // public randomize(): void {
-  //   // Only Change 3 values
-  //   this.barChartData.datasets[0].data = [
-  //     Math.round(Math.random() * 100),
-  //     59,
-  //     80,
-  //     Math.round(Math.random() * 100),
-  //     56,
-  //     Math.round(Math.random() * 100),
-  //     40 ];
+  public update(): void {
+    // Only Change 3 values
+    this.barChartData.datasets[0].data = [
+      Math.round(Math.random() * 100),
+      59,
+      80,
+      Math.round(Math.random() * 100),
+      56,
+      Math.round(Math.random() * 100),
+      40 ];
 
-  //   this.chart?.update();
-  // }
+    this.chart?.update();
+  }
 }

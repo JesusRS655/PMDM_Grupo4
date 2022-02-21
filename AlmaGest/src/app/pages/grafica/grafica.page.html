@@ -11,7 +11,7 @@
 </ion-content>
 <ion-footer>
   <div>
-    <div style="display: block; padding-top: 40%;">
+    <div style="display: block">
       <canvas baseChart
         [data]="barChartData"
         [options]="barChartOptions"
@@ -21,5 +21,6 @@
         (chartClick)="chartClicked($event)">
       </canvas>
     </div>
+    <ion-button fill="solid" expand="full" color="primary" (click)="update()">Generar Gráfica</ion-button>
   </div>
 </ion-footer>
