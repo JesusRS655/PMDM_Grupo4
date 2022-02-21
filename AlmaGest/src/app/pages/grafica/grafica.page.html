@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-select [(ngModel)]="datosPedidos" >
-    <ion-select-option *ngFor="let datosPedido of datosPedidos">Pedido {{ datosPedido.id }}</ion-select-option>
+  <ion-select [(ngModel)]="productos" >
+    <ion-select-option *ngFor="let producto of productos">{{ producto.compamy_description }}</ion-select-option>
   </ion-select> 
 </ion-content>
 <ion-footer>

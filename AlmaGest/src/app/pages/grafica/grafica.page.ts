@@ -28,14 +28,7 @@ export class GraficaPage implements OnInit {
   currentDate = new Date();
   año = this.currentDate.getFullYear();
   mes = this.currentDate.getMonth();
-  meses: any[] = [
-    this.mes+1+'/'+this.año,
-    this.mes+2+'/'+this.año,
-    this.mes+3+'/'+this.año,
-    this.mes+4+'/'+this.año,
-    this.mes+5+'/'+this.año,
-    this.mes+6+'/'+this.año,
-  ];
+  meses: any[] = [];
   // prueba = this.datosPedidos[1]['order_lines'][1]['article_lines'][1]['num_articles'];
 
   
@@ -49,19 +42,19 @@ export class GraficaPage implements OnInit {
     this.dataService.getPedidosEmpresa(this.idEmpresa).then((data) => {
       this.datosPedidos = data['data'];
       console.log(this.datosPedidos);
-      console.log(this.datosPedidos[1]['order_lines'][1]['article_lines'][1]['num_articles']);
-
+      console.log(this.datosPedidos[0]);
+      console.log(this.datosPedidos[0]['order_lines'][0]['articles_line'][0]['num_articles']);
     })
-    
 
-    // for (let i = 0; i < 6; i++) {
-    //   if((this.currentDate.getMonth()-i)<0){
-    //     this.meses.push((this.mes+(11-i))+'/'+(this.año-1));
-    //   }
-    //   else {
-    //     this.meses.push((this.mes+i)+'/'+this.año);
-    //   }
-    // }
+    for (let i = 0; i < 6; i++) {
+      if((this.mes-i)<=0){
+        this.meses.push((this.mes+(12-i))+'/'+(this.año-1));
+      }
+      else {
+        this.meses.push((this.mes+i)+'/'+this.año);
+      }
+    }
+    console.log(this.meses)
   }
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -72,7 +65,7 @@ export class GraficaPage implements OnInit {
       x: {},
       y: {
         min: 0,
-        max: 100
+        max: 15
       }
     },
     plugins: {
@@ -116,15 +109,30 @@ export class GraficaPage implements OnInit {
   }
 
   public update(): void {
+    var prueba1 = this.datosPedidos[0]['order_lines'][0]['articles_line'][0]['num_articles']
+    var prueba2 = this.datosPedidos[1]['order_lines'][0]['articles_line'][0]['num_articles']
+    var prueba3 = this.datosPedidos[2]['order_lines'][0]['articles_line'][0]['num_articles']
+    var prueba4 = this.datosPedidos[3]['order_lines'][0]['articles_line'][0]['num_articles']
+    var prueba5 = this.datosPedidos[4]['order_lines'][0]['articles_line'][0]['num_articles']
+    var prueba6 = this.datosPedidos[5]['order_lines'][0]['articles_line'][0]['num_articles']
     // Only Change 3 values
+    // this.barChartData.datasets[0].data = [
+    //   Math.round(Math.random() * 100),
+    //   59,
+    //   80,
+    //   Math.round(Math.random() * 100),
+    //   56,
+    //   Math.round(Math.random() * 100),
+    //   40 ];
+
     this.barChartData.datasets[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      Math.round(Math.random() * 100),
-      56,
-      Math.round(Math.random() * 100),
-      40 ];
+      prueba1,
+      prueba2,
+      prueba3,
+      prueba4,
+      prueba5,
+      prueba6,
+    ];
 
     this.chart?.update();
   }
