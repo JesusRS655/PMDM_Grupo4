@@ -5,14 +5,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-select [(ngModel)]="productos" >
-    <ion-select-option *ngFor="let producto of productos">{{ producto.compamy_description }}</ion-select-option>
+  <ion-select [(ngModel)]="idProducto">
+    <ion-select-option *ngFor="let producto of productos" [value]="producto.article_id">{{ producto.compamy_description }}</ion-select-option>
   </ion-select> 
 </ion-content>
 <ion-footer>
   <div>
     <div style="display: block">
-      <canvas baseChart
+      <canvas baseChart style="height: 50vh"
         [data]="barChartData"
         [options]="barChartOptions"
         [plugins]="barChartPlugins"
@@ -21,6 +21,6 @@
         (chartClick)="chartClicked($event)">
       </canvas>
     </div>
-    <ion-button fill="solid" expand="full" color="primary" (click)="update()">Generar Gráfica</ion-button>
+    <ion-button fill="solid" expand="full" color="primary" (click)="generar()">Generar Gráfica</ion-button>
   </div>
 </ion-footer>

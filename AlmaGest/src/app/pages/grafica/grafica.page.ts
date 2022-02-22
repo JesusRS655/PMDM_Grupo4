@@ -20,52 +20,41 @@ export class GraficaPage implements OnInit {
     this.idEmpresa=dataService.empresa
    }
 
-  // https://valor-software.com/ng2-charts/#BarChart
 
   idEmpresa: any;
+  idProducto: number;
   productos:any = [];
   datosPedidos: any[] = [];
   currentDate = new Date();
-  año = this.currentDate.getFullYear();
   mes = this.currentDate.getMonth();
+  año = this.currentDate.getFullYear();
   meses: any[] = [];
-  // prueba = this.datosPedidos[1]['order_lines'][1]['article_lines'][1]['num_articles'];
+  años:  any[] = [];
+  fechas: any[] = [];
+  ventas: any[] = [ 0, 0, 0, 0, 0, 0 ];
 
-  
   
   ngOnInit() {
     this.dataService.getProductosEmpresa().then((data) => {
       this.productos = data.data;
-      console.log(this.productos);
-      console.log(this.productos[1])
+      console.log(this.productos)
     });
     this.dataService.getPedidosEmpresa(this.idEmpresa).then((data) => {
       this.datosPedidos = data['data'];
       console.log(this.datosPedidos);
-      console.log(this.datosPedidos[0]);
-      console.log(this.datosPedidos[0]['order_lines'][0]['articles_line'][0]['num_articles']);
     })
-
-    for (let i = 0; i < 6; i++) {
-      if((this.mes-i)<=0){
-        this.meses.push((this.mes+(12-i))+'/'+(this.año-1));
-      }
-      else {
-        this.meses.push((this.mes+i)+'/'+this.año);
-      }
-    }
-    console.log(this.meses)
+    this.ultimosMeses();
   }
 
   public barChartOptions: ChartConfiguration['options'] = {
     
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
+    maintainAspectRatio: false,
+    
     scales: {
       x: {},
       y: {
         min: 0,
-        max: 15
       }
     },
     plugins: {
@@ -73,8 +62,7 @@ export class GraficaPage implements OnInit {
         display: true,
       },
       datalabels: {
-        anchor: 'end',
-        align: 'end'
+        display: false,
       }
     }
   };
@@ -85,55 +73,75 @@ export class GraficaPage implements OnInit {
 
   public barChartData: ChartData<'bar'> = {
 
-    
-
-    labels: [ this.meses[0], this.meses[1], this.meses[2], this.meses[3], this.meses[4], this.meses[5]],
+    labels: this.fechas,
     datasets: [
-      { data: [ 
-        7, 
-        5, 
-        10, 
-        8, 
-        5, 
-        5 ], label: 'Ventas' }
+      { data: this.ventas, label: 'Ventas' }
     ]
   };
 
-  // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
+  }
+
+  async ultimosMeses() {
+    for (let i = 0; i < 6; i++) {
+      if((this.mes-i)<=0){
+        this.meses.push(this.mes+(12-i));
+        this.años.push(this.año-1);
+      }
+      else {
+        this.meses.push(this.mes+i);
+        this.años.push(this.año);
+      }
+    }
+    for (let i = 0; i < 6; i++) {
+        this.fechas.push(this.meses[i]+'/'+this.años[i])
+    }
   }
 
   public update(): void {
-    var prueba1 = this.datosPedidos[0]['order_lines'][0]['articles_line'][0]['num_articles']
-    var prueba2 = this.datosPedidos[1]['order_lines'][0]['articles_line'][0]['num_articles']
-    var prueba3 = this.datosPedidos[2]['order_lines'][0]['articles_line'][0]['num_articles']
-    var prueba4 = this.datosPedidos[3]['order_lines'][0]['articles_line'][0]['num_articles']
-    var prueba5 = this.datosPedidos[4]['order_lines'][0]['articles_line'][0]['num_articles']
-    var prueba6 = this.datosPedidos[5]['order_lines'][0]['articles_line'][0]['num_articles']
-    // Only Change 3 values
-    // this.barChartData.datasets[0].data = [
-    //   Math.round(Math.random() * 100),
-    //   59,
-    //   80,
-    //   Math.round(Math.random() * 100),
-    //   56,
-    //   Math.round(Math.random() * 100),
-    //   40 ];
 
-    this.barChartData.datasets[0].data = [
-      prueba1,
-      prueba2,
-      prueba3,
-      prueba4,
-      prueba5,
-      prueba6,
-    ];
+    this.barChartData.datasets[0].data = this.ventas;
 
     this.chart?.update();
   }
+
+  async generar() {
+    this.ventas = [ 0, 0, 0, 0, 0, 0 ]
+    for (let a = 0; a < this.datosPedidos.length; a++) {
+
+      for (let b = 0; b < this.datosPedidos[a]['order_lines'].length; b++) {
+
+        for (let c = 0; c < this.datosPedidos[a]['order_lines'][b]['articles_line'].length; c++) {
+
+          if (this.datosPedidos[a]['order_lines'][b]['articles_line'][c]['article_id']===this.idProducto) {
+
+            let fechaPedido = new Date(this.datosPedidos[a]['order_lines'][b]['issue_date']);
+            
+            
+            for (let d = 0; d < this.meses.length; d++) {
+              if (fechaPedido.getMonth()===this.meses[d+1]) {
+                this.ventas[d+1]+=this.datosPedidos[a]['order_lines'][b]['articles_line'][c]['num_articles'];
+                console.log(this.datosPedidos[a])
+                // console.log('-----------------')
+                // console.log('Ventas :'+this.datosPedidos[a]['order_lines'][b]['articles_line'][c]['num_articles'])
+                // console.log('Mes :'+fechaPedido.getMonth())
+                // console.log('-----------------')
+              }
+            }
+          }
+        }
+      }
+    }
+
+    this.barChartData.datasets[0].data = this.ventas;
+
+    this.chart?.update();
+    // console.log(this.ventas);
+  }
+  
 }
