@@ -32,16 +32,15 @@ export class GraficaPage implements OnInit {
   años:  any[] = [];
   fechas: any[] = [];
   ventas: any[] = [ 0, 0, 0, 0, 0, 0 ];
-
   
   ngOnInit() {
     this.dataService.getProductosEmpresa().then((data) => {
       this.productos = data.data;
-      console.log(this.productos)
+      // console.log(this.productos)
     });
     this.dataService.getPedidosEmpresa(this.idEmpresa).then((data) => {
       this.datosPedidos = data['data'];
-      console.log(this.datosPedidos);
+      // console.log(this.datosPedidos);
     })
     this.ultimosMeses();
   }
@@ -121,16 +120,11 @@ export class GraficaPage implements OnInit {
           if (this.datosPedidos[a]['order_lines'][b]['articles_line'][c]['article_id']===this.idProducto) {
 
             let fechaPedido = new Date(this.datosPedidos[a]['order_lines'][b]['issue_date']);
-            
-            
             for (let d = 0; d < this.meses.length; d++) {
+              
               if (fechaPedido.getMonth()===this.meses[d+1]) {
                 this.ventas[d+1]+=this.datosPedidos[a]['order_lines'][b]['articles_line'][c]['num_articles'];
-                console.log(this.datosPedidos[a])
-                // console.log('-----------------')
-                // console.log('Ventas :'+this.datosPedidos[a]['order_lines'][b]['articles_line'][c]['num_articles'])
-                // console.log('Mes :'+fechaPedido.getMonth())
-                // console.log('-----------------')
+                // console.log(this.datosPedidos[a])
               }
             }
           }
@@ -141,7 +135,6 @@ export class GraficaPage implements OnInit {
     this.barChartData.datasets[0].data = this.ventas;
 
     this.chart?.update();
-    // console.log(this.ventas);
   }
   
 }
